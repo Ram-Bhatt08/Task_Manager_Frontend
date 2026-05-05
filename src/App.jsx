@@ -1,6 +1,6 @@
 import react from "react";
 import Login from './Component/Login/Login';
-import Signup from './Component/Login/signup';
+import Signup from './Component/Login/Signup';
 import Project from './Component/Project/Project';
 import Dashboard from './Component/Dashboard/Dashboard';
 import Task from './Component/Task/Task';
