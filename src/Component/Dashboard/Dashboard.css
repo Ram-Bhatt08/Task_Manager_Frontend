@@ -1,211 +1,294 @@
-/* Dashboard.css - Clean Professional UI */
-
-:root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-
-  --bg: #f4f6f9;
-  --card: #ffffff;
-  --text: #111827;
-  --muted: #6b7280;
-
-  --border: #e5e7eb;
-  --shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  --radius: 12px;
-}
-
-/* Reset */
+/* ====== GLOBAL ====== */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", sans-serif;
 }
 
-body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-}
-
-/* Wrapper */
+/* ====== WRAPPER ====== */
 .dashboard-wrapper {
   min-height: 100vh;
-  padding: 20px;
+  background: #f9fafb;
+  padding: 30px;
 }
 
-/* Container */
-.dashboard-container {
-  max-width: 1200px;
-  margin: auto;
-  background: var(--card);
-  padding: 24px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-/* Header */
-.dashboard-container h1 {
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.dashboard-container button {
-  cursor: pointer;
-}
-
-/* Top bar */
-.dashboard-container > div:first-child {
+/* ====== HEADER ====== */
+.dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 25px;
 }
 
-/* Logout button */
-.dashboard-container button {
-  padding: 8px 14px;
+.dashboard-header h2 {
+  font-size: 22px;
+  color: #111827;
+}
+
+.dashboard-header button {
+  background: #ef4444;
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  background: var(--primary);
-  color: white;
-  font-size: 13px;
-  transition: 0.2s ease;
-}
-
-.dashboard-container button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
-}
-
-/* Create button */
-.dashboard-container > button {
-  margin: 10px 0 20px;
-  background: #111827;
-}
-
-.dashboard-container > button:hover {
-  background: #000;
-}
-
-/* Stats Section */
-.dashboard-container h3 {
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
   font-size: 14px;
-  font-weight: 600;
-  color: var(--muted);
-  margin: 6px 0;
+  transition: 0.2s;
 }
 
-/* Stats block */
-.dashboard-container > div:nth-of-type(2) {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
+.dashboard-header button:hover {
+  background: #dc2626;
+}
+
+/* ====== PROJECT BUTTON ====== */
+.project-btn {
   margin-bottom: 20px;
+  padding: 10px 16px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
 }
 
-.dashboard-container > div:nth-of-type(2) h3 {
-  background: #f9fafb;
-  padding: 12px;
+.project-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ====== STATS ====== */
+.dashboard-stats {
+  background: #ffffff;
+  padding: 20px;
   border-radius: 10px;
-  border: 1px solid var(--border);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  margin-bottom: 25px;
+}
+
+.dashboard-stats h3 {
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.stat-card {
+  background: #f3f4f6;
+  padding: 15px;
+  border-radius: 8px;
   text-align: center;
+}
+
+.stat-card h4 {
   font-size: 13px;
-  color: var(--text);
+  color: #6b7280;
 }
 
-/* Task Section Title */
-.dashboard-container h2 {
-  font-size: 18px;
-  margin: 20px 0 10px;
+.stat-card p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 5px;
 }
 
-/* Task Cards */
-.dashboard-container > div:nth-of-type(3) {
+/* ====== TASK SECTION ====== */
+.tasks-section h3 {
+  margin-bottom: 15px;
+  color: #111827;
+}
+
+/* ====== TASK CARD ====== */
+/* 
+.task-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: 0.2s;
+}
+
+.task-card:hover {
+  box-shadow: 0 5px 12px rgba(0,0,0,0.06);
+}
+
+.task-card h4 {
+  margin-bottom: 5px;
+  color: #111827;
+}
+
+.task-card p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 3px 0;
+} */
+
+/* ====== TASK SECTION ====== */
+.tasks-section {
+  margin-top: 30px;
+}
+
+.tasks-section h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 15px;
+}
+
+/* ====== GRID LAYOUT ====== */
+.tasks-section {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
-/* Each task card */
-.dashboard-container > div:nth-of-type(3) > div {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px;
-  transition: 0.2s ease;
+/* ====== TASK CARD ====== */
+.task-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
-.dashboard-container > div:nth-of-type(3) > div:hover {
+.task-card:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
   transform: translateY(-2px);
-  box-shadow: var(--shadow);
 }
 
-/* Task title */
-.dashboard-container h4 {
+/* ====== TITLE ====== */
+.task-card h4 {
   font-size: 15px;
   font-weight: 600;
+  color: #111827;
   margin-bottom: 6px;
 }
 
-/* Text */
-.dashboard-container p {
+/* ====== PROJECT TEXT ====== */
+.task-card p {
   font-size: 13px;
-  color: var(--muted);
-  margin: 3px 0;
+  color: #6b7280;
+  margin-bottom: 8px;
 }
 
-/* Loading */
+/* ====== STATUS BADGE ====== */
+.status {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+/* Specific status colors */
+.status.todo {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.status.inprogress {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.done {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* ====== SELECT ====== */
+.task-card select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.task-card select:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #ffffff;
+}
+
+/* ====== EMPTY STATE ====== */
+.empty-state {
+  font-size: 14px;
+  color: #6b7280;
+  text-align: center;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+}
+
+/* ====== STATUS BADGE ====== */
+.status {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.status.todo {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.status.inprogress {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.done {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* ====== SELECT ====== */
+.task-card select {
+  margin-top: 10px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ====== EMPTY STATE ====== */
+.empty-state {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ====== LOADING ====== */
 .loading {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   font-size: 16px;
-  color: var(--muted);
+  color: #6b7280;
+  margin-top: 50px;
 }
 
-/* Toast */
-.toast-notification {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #111827;
-  color: #22c55e;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-size: 13px;
-  box-shadow: var(--shadow);
-  animation: slideIn 0.2s ease;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .dashboard-container > div:nth-of-type(2) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  .dashboard-container > div:nth-of-type(2) {
-    grid-template-columns: 1fr;
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  .dashboard-wrapper {
+    padding: 20px;
   }
 
-  .dashboard-container {
-    padding: 16px;
+  .dashboard-header h2 {
+    font-size: 18px;
   }
 }

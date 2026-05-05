@@ -85,7 +85,7 @@ const Task = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      fetchData(); // safer than trusting response
+      fetchData();
 
       setFormData({
         title: "",
@@ -113,7 +113,7 @@ const Task = () => {
           t._id === taskId ? { ...t, status } : t
         )
       );
-    } catch (err) {
+    } catch {
       alert("Status update failed");
     }
   };
@@ -136,31 +136,65 @@ const Task = () => {
   const isAdmin =
     (project?.admin?._id || project?.admin) === currentUser?._id;
 
-  if (loading) return <div>Loading...</div>;
-  if (!project) return <div>Project not found</div>;
+  if (loading) return <div className="loading">Loading...</div>;
+  if (!project) return <div className="loading">Project not found</div>;
+
+  const statuses = ["To Do", "In Progress", "Done"];
 
   return (
     <div className="task-page">
-      <button onClick={() => navigate(`/projectdetails/${projectId}`)}>
-        ← Back
-      </button>
 
-      <h2>{project.name} Tasks</h2>
+      {/* ===== HEADER ===== */}
+      <div className="task-header">
+        <h2>{project.name} Tasks</h2>
 
-      {/* CREATE */}
+        <button
+          className="back-btn"
+          onClick={() => navigate(`/projectdetails/${projectId}`)}
+        >
+          ← Back
+        </button>
+      </div>
+
+      {/* ===== CREATE TASK ===== */}
       {isAdmin && (
         <div className="task-form">
-          <input name="title" value={formData.title} onChange={handleChange} placeholder="Title" />
-          <textarea name="description" value={formData.description} onChange={handleChange} />
-          <input type="date" name="dueDate" value={formData.dueDate} onChange={handleChange} />
+          <input
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            placeholder="Task title"
+          />
 
-          <select name="priority" value={formData.priority} onChange={handleChange}>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Description"
+          />
+
+          <input
+            type="date"
+            name="dueDate"
+            value={formData.dueDate}
+            onChange={handleChange}
+          />
+
+          <select
+            name="priority"
+            value={formData.priority}
+            onChange={handleChange}
+          >
             <option>Low</option>
             <option>Medium</option>
             <option>High</option>
           </select>
 
-          <select name="assignedTo" value={formData.assignedTo} onChange={handleChange}>
+          <select
+            name="assignedTo"
+            value={formData.assignedTo}
+            onChange={handleChange}
+          >
             <option value="">Assign To</option>
             {project.members.map((m) => (
               <option key={m.user._id} value={m.user._id}>
@@ -169,42 +203,70 @@ const Task = () => {
             ))}
           </select>
 
-          <button onClick={handleCreateTask}>Create</button>
+          <button onClick={handleCreateTask}>
+            Create Task
+          </button>
         </div>
       )}
 
-      {/* BOARD */}
+      {/* ===== KANBAN BOARD ===== */}
       <div className="task-board">
-        {["To Do", "In Progress", "Done"].map((status) => (
+        {statuses.map((status) => (
           <div key={status} className="task-column">
+
             <h3>{status}</h3>
 
-            {tasks
-              .filter((t) => t.status === status)
-              .map((task) => (
-                <div key={task._id} className="task-card">
-                  <h4>{task.title}</h4>
-                  <p>{task.description}</p>
-                  <p>Assigned: {task.assignedTo?.email || "Unassigned"}</p>
+            {tasks.filter((t) => t.status === status).length === 0 ? (
+              <p className="empty-state">No tasks</p>
+            ) : (
+              tasks
+                .filter((t) => t.status === status)
+                .map((task) => (
+                  <div key={task._id} className="task-card">
 
-                  <select
-                    value={task.status}
-                    onChange={(e) =>
-                      handleStatusChange(task._id, e.target.value)
-                    }
-                  >
-                    <option>To Do</option>
-                    <option>In Progress</option>
-                    <option>Done</option>
-                  </select>
+                    <h4>{task.title}</h4>
 
-                  {isAdmin && (
-                    <button onClick={() => handleDeleteTask(task._id)}>
-                      Delete
-                    </button>
-                  )}
-                </div>
-              ))}
+                    <p>{task.description || "No description"}</p>
+
+                    <p>
+                      Assigned:{" "}
+                      {task.assignedTo?.email || "Unassigned"}
+                    </p>
+
+                    <p>
+                      Priority: <strong>{task.priority}</strong>
+                    </p>
+
+                    {task.dueDate && (
+                      <p>
+                        Due:{" "}
+                        {new Date(task.dueDate).toLocaleDateString()}
+                      </p>
+                    )}
+
+                    {/* STATUS */}
+                    <select
+                      value={task.status}
+                      onChange={(e) =>
+                        handleStatusChange(task._id, e.target.value)
+                      }
+                    >
+                      {statuses.map((s) => (
+                        <option key={s}>{s}</option>
+                      ))}
+                    </select>
+
+                    {/* DELETE */}
+                    {isAdmin && (
+                      <button
+                        onClick={() => handleDeleteTask(task._id)}
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </div>
+                ))
+            )}
           </div>
         ))}
       </div>

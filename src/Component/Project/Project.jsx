@@ -45,17 +45,13 @@ const Project = () => {
     };
 
     fetchProjects();
-
-    // ⚠️ RUN ONLY ONCE
     // eslint-disable-next-line
   }, []);
 
   // ================= CREATE PROJECT =================
   const createProject = async () => {
     try {
-      if (!name.trim()) {
-        return alert("Project name required");
-      }
+      if (!name.trim()) return alert("Project name required");
 
       const res = await axios.post(
         `${API}/projects`,
@@ -74,9 +70,7 @@ const Project = () => {
   // ================= ADD MEMBER =================
   const addMember = async (id) => {
     try {
-      if (!email.trim()) {
-        return alert("Email required");
-      }
+      if (!email.trim()) return alert("Email required");
 
       const res = await axios.put(
         `${API}/projects/${id}/add-member`,
@@ -84,7 +78,6 @@ const Project = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // ✅ update state WITHOUT refetch (prevents blinking)
       setProjects((prev) =>
         prev.map((p) => (p._id === id ? res.data : p))
       );
@@ -97,88 +90,88 @@ const Project = () => {
     }
   };
 
-  // ================= ADMIN CHECK =================
   const isAdmin = (p) => {
     const adminId = p.admin?._id || p.admin;
     return adminId === user?._id;
   };
 
-  if (loading) return <div>Loading projects...</div>;
+  if (loading) return <div className="loading">Loading projects...</div>;
 
   return (
-    <div>
-      <button onClick={() => navigate("/dashboard")}>
-        Back
-      </button>
+    <div className="project-wrapper">
 
-      <h2>Projects</h2>
+      {/* HEADER */}
+      <div className="project-header">
+        <h2>Projects</h2>
+        <button className="back-btn" onClick={() => navigate("/dashboard")}>
+          Back to Dashboard
+        </button>
+      </div>
 
       {/* CREATE PROJECT */}
-      <div style={{ marginBottom: 10 }}>
+      <div className="create-project">
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Project name"
+          placeholder="Enter project name"
         />
         <button onClick={createProject}>Create</button>
       </div>
 
-      {/* PROJECT LIST */}
+      {/* EMPTY STATE */}
       {projects.length === 0 ? (
-        <p>No projects found</p>
+        <p className="empty-state">No projects found</p>
       ) : (
-        projects.map((p) => (
-          <div
-            key={p._id}
-            style={{
-              border: "1px solid black",
-              margin: 10,
-              padding: 10,
-              borderRadius: 6,
-            }}
-          >
-            <NavLink to={`/projectdetails/${p._id}`}>
-              <h3>{p.name}</h3>
-            </NavLink>
+        <div className="project-grid">
+          {projects.map((p) => (
+            <div className="project-card" key={p._id}>
 
-            <p>Members: {p.members?.length || 0}</p>
+              {/* TITLE */}
+              <NavLink to={`/projectdetails/${p._id}`} className="project-link">
+                {p.name}
+              </NavLink>
 
-            <p>
-              Role: {isAdmin(p) ? "Admin" : "Member"}
-            </p>
+              {/* INFO */}
+              <p>Members: {p.members?.length || 0}</p>
 
-            {/* ADD MEMBER */}
-            {isAdmin(p) && (
-              <div>
-                {activeProject === p._id ? (
-                  <>
-                    <input
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="member email"
-                    />
-                    <button onClick={() => addMember(p._id)}>
-                      Add
+              <span className={`role ${isAdmin(p) ? "admin" : "member"}`}>
+                {isAdmin(p) ? "Admin" : "Member"}
+              </span>
+
+              {/* ADD MEMBER */}
+              {isAdmin(p) && (
+                <div className="add-member">
+                  {activeProject === p._id ? (
+                    <>
+                      <input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter member email"
+                      />
+                      <button onClick={() => addMember(p._id)}>
+                        Add Member
+                      </button>
+                    </>
+                  ) : (
+                    <button onClick={() => setActiveProject(p._id)}>
+                      Add Member
                     </button>
-                  </>
-                ) : (
-                  <button onClick={() => setActiveProject(p._id)}>
-                    Add Member
-                  </button>
-                )}
-              </div>
-            )}
-
-            {/* MEMBERS */}
-            <div style={{ marginTop: 10 }}>
-              {p.members?.map((m) => (
-                <div key={m._id}>
-                  <span>{m.user?.email || "Unknown user"}</span>
+                  )}
                 </div>
-              ))}
+              )}
+
+              {/* MEMBERS LIST */}
+              <div className="members">
+                {p.members?.map((m) => (
+                  <div key={m._id} className="member-item">
+                    {m.user?.email || "Unknown user"}
+                  </div>
+                ))}
+              </div>
+
             </div>
-          </div>
-        ))
+          ))}
+        </div>
       )}
     </div>
   );

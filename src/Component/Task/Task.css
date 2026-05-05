@@ -1,34 +1,50 @@
-.task-container {
-  padding: 24px;
-  background: #f6f8fb;
+/* ====== GLOBAL ====== */
+* {
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+.task-page {
   min-height: 100vh;
-  font-family: "Segoe UI", sans-serif;
+  background: #f9fafb;
+  padding: 25px;
+}
+
+/* ====== HEADER ====== */
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.task-header h2 {
+  font-size: 22px;
+  color: #111827;
 }
 
 .back-btn {
-  background: none;
+  background: #374151;
+  color: white;
   border: none;
-  color: #4a6cf7;
+  padding: 8px 14px;
+  border-radius: 6px;
   cursor: pointer;
-  margin-bottom: 10px;
 }
 
 .back-btn:hover {
-  text-decoration: underline;
+  background: #1f2937;
 }
 
-.task-title {
-  font-size: 26px;
-  margin-bottom: 20px;
-}
-
+/* ====== FORM ====== */
 .task-form {
-  background: #fff;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   padding: 15px;
   border-radius: 10px;
-  margin-bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
+  margin-bottom: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 10px;
 }
 
@@ -36,62 +52,128 @@
 .task-form textarea,
 .task-form select {
   padding: 8px;
-  border: 1px solid #ddd;
   border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
 }
 
 .task-form textarea {
-  height: 60px;
+  resize: none;
+  height: 70px;
+}
+
+.task-form input:focus,
+.task-form textarea:focus,
+.task-form select:focus {
+  border-color: #2563eb;
+  outline: none;
 }
 
 .task-form button {
-  background: #4a6cf7;
+  grid-column: span 2;
+  padding: 10px;
+  background: #2563eb;
   color: white;
   border: none;
-  padding: 8px 12px;
   border-radius: 6px;
   cursor: pointer;
 }
 
 .task-form button:hover {
-  background: #3b5bdb;
+  background: #1d4ed8;
 }
 
-.kanban-board {
-  display: flex;
+/* ====== BOARD ====== */
+.task-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-.kanban-column {
-  flex: 1;
-  background: #eef1f7;
-  padding: 10px;
+/* ====== COLUMN ====== */
+.task-column {
+  background: #f3f4f6;
+  padding: 12px;
   border-radius: 10px;
+  min-height: 400px;
 }
 
-.kanban-column h3 {
+.task-column h3 {
   text-align: center;
+  margin-bottom: 10px;
+  color: #111827;
 }
 
+/* ====== CARD ====== */
 .task-card {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  border-radius: 8px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: 0.2s;
 }
 
 .task-card:hover {
-  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.06);
 }
 
-.delete-btn {
-  margin-top: 5px;
+.task-card h4 {
+  font-size: 15px;
+  color: #111827;
+  margin-bottom: 5px;
+}
+
+.task-card p {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 3px 0;
+}
+
+/* ====== SELECT ====== */
+.task-card select {
+  margin-top: 6px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #d1d5db;
+  font-size: 12px;
+}
+
+/* ====== DELETE BUTTON ====== */
+.task-card button {
+  margin-top: 6px;
   width: 100%;
-  background: red;
+  padding: 6px;
+  background: #ef4444;
   color: white;
   border: none;
-  padding: 6px;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 12px;
+}
+
+.task-card button:hover {
+  background: #dc2626;
+}
+
+/* ====== EMPTY STATE ====== */
+.empty-state {
+  text-align: center;
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 10px;
+}
+
+/* ====== LOADING ====== */
+.loading {
+  text-align: center;
+  margin-top: 50px;
+  color: #6b7280;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  .task-board {
+    grid-template-columns: 1fr;
+  }
 }

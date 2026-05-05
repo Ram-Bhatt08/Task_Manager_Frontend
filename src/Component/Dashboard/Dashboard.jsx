@@ -88,84 +88,107 @@ const Dashboard = () => {
     }
   };
 
+  // ================= LOGOUT =================
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   // ================= LOADING =================
-  if (loading) return <div>Loading dashboard...</div>;
+  if (loading) return <div className="loading">Loading dashboard...</div>;
 
   return (
     <div className="dashboard-wrapper">
 
       {/* HEADER */}
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h2>Welcome {user?.name}</h2>
+      <div className="dashboard-header">
+        <h2>Welcome, {user?.name}</h2>
 
-        <button
-          onClick={() => {
-            localStorage.clear();
-            navigate("/");
-          }}
-        >
+        <button onClick={handleLogout}>
           Logout
         </button>
       </div>
 
-      <button onClick={() => navigate("/project")}>
+      {/* PROJECT BUTTON */}
+      <button
+        className="project-btn"
+        onClick={() => navigate("/project")}
+      >
         Go to Projects
       </button>
 
-      {/* ================= DASHBOARD STATS ================= */}
-      <div style={{ marginTop: 20 }}>
+      {/* ================= STATS ================= */}
+      <div className="dashboard-stats">
         <h3>Dashboard Overview</h3>
 
-        <p>Total Tasks: {stats?.totalTasks ?? 0}</p>
+        <div className="stats-grid">
+          <div className="stat-card">
+            <h4>Total Tasks</h4>
+            <p>{stats?.totalTasks ?? 0}</p>
+          </div>
 
-        <h4>Tasks by Status</h4>
-        <p>Todo: {stats?.statusCount?.todo ?? 0}</p>
-        <p>In Progress: {stats?.statusCount?.inProgress ?? 0}</p>
-        <p>Done: {stats?.statusCount?.done ?? 0}</p>
+          <div className="stat-card">
+            <h4>Todo</h4>
+            <p>{stats?.statusCount?.todo ?? 0}</p>
+          </div>
 
-        <p>Overdue Tasks: {stats?.overdueTasks ?? 0}</p>
+          <div className="stat-card">
+            <h4>In Progress</h4>
+            <p>{stats?.statusCount?.inProgress ?? 0}</p>
+          </div>
+
+          <div className="stat-card">
+            <h4>Done</h4>
+            <p>{stats?.statusCount?.done ?? 0}</p>
+          </div>
+
+          <div className="stat-card">
+            <h4>Overdue</h4>
+            <p>{stats?.overdueTasks ?? 0}</p>
+          </div>
+        </div>
       </div>
 
-      {/* ================= MY TASKS ================= */}
-      <h3 style={{ marginTop: 20 }}>My Tasks</h3>
+      {/* ================= TASKS ================= */}
+      <div className="tasks-section">
+        <h3>My Tasks</h3>
 
-      {myTasks.length === 0 ? (
-        <p>No tasks assigned</p>
-      ) : (
-        myTasks.map((task) => (
-          <div
-            key={task._id}
-            style={{
-              border: "1px solid #ccc",
-              padding: 12,
-              marginTop: 10,
-              borderRadius: 6,
-            }}
-          >
-            <h4>{task.title}</h4>
+        {myTasks.length === 0 ? (
+          <p className="empty-state">No tasks assigned</p>
+        ) : (
+          myTasks.map((task) => (
+            <div className="task-card" key={task._id}>
+              <h4>{task.title}</h4>
 
-            <p>
-              Project:{" "}
-              <strong>
-                {task.project?.name || "No Project"}
-              </strong>
-            </p>
+              <p>
+                Project:{" "}
+                <strong>
+                  {task.project?.name || "No Project"}
+                </strong>
+              </p>
 
-            <p>Status: {task.status}</p>
+              <span
+                className={`status ${task.status
+                  .toLowerCase()
+                  .replace(" ", "")}`}
+              >
+                {task.status}
+              </span>
 
-            <select
-              value={task.status}
-              onChange={(e) =>
-                handleStatus(task._id, e.target.value)
-              }
-            >
-              <option>To Do</option>
-              <option>In Progress</option>
-              <option>Done</option>
-            </select>
-          </div>
-        ))
-      )}
+              <select
+                value={task.status}
+                onChange={(e) =>
+                  handleStatus(task._id, e.target.value)
+                }
+              >
+                <option>To Do</option>
+                <option>In Progress</option>
+                <option>Done</option>
+              </select>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };
