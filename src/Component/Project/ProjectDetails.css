@@ -1,0 +1,121 @@
+/* Page wrapper */
+.project-details {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  background: #f9fafb;
+}
+
+/* Back button */
+.project-details button {
+  padding: 10px 16px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition: 0.2s;
+}
+
+.project-details button:hover {
+  background: #1d4ed8;
+}
+
+/* Title */
+.project-details h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+/* Admin text */
+.project-details p {
+  font-size: 15px;
+  color: #374151;
+  margin-bottom: 20px;
+}
+
+/* Section title */
+.project-details h3 {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #111827;
+}
+
+/* Member card */
+.member-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: 0.2s;
+}
+
+.member-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Email text */
+.member-card span {
+  font-size: 15px;
+  color: #111827;
+}
+
+/* Admin badge */
+.admin-badge {
+  margin-left: 10px;
+  padding: 4px 8px;
+  font-size: 12px;
+  background: #10b981;
+  color: white;
+  border-radius: 5px;
+}
+
+/* Remove button */
+.remove-btn {
+  padding: 6px 10px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.remove-btn:hover {
+  background: #dc2626;
+}
+
+/* Task button */
+.task-btn {
+  margin-top: 25px;
+  width: 100%;
+  padding: 12px;
+  background: #111827;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.task-btn:hover {
+  background: #000000;
+}
+
+/* Loading / empty state */
+.project-details .status {
+  text-align: center;
+  font-size: 16px;
+  color: #6b7280;
+  margin-top: 40px;
+}
