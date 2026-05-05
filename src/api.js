@@ -1,5 +1,5 @@
 // const API = "http://localhost:5000/api";
-const API="https://task-manager-backend-2-66xc.onrender.com";
+const API="https://task-manager-backend-2-66xc.onrender.com/api";
 export default API;
 
 
