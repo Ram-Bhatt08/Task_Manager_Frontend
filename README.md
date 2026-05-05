@@ -3,55 +3,55 @@
 A full-stack Team Task Management Web Application built using the MERN stack.
 This application allows users to create projects, assign tasks, collaborate with team members, and track progress using a clean dashboard and Kanban-style board.
 
-# 🚀 Features
- #🔐 Authentication
-. User Signup & Login
-. JWT-based authentication
-. Protected routes
+# 🚀 Features <br>
+# 🔐 Authentication <br>
+. User Signup & Login <br>
+. JWT-based authentication <br>
+. Protected routes <br>
 
-# 📊 Dashboard
-Overview of total tasks
-Task status breakdown (To Do, In Progress, Done)
-Overdue task tracking
-Personalized “My Tasks” section
+# 📊 Dashboard <br>
+Overview of total tasks <br>
+Task status breakdown (To Do, In Progress, Done) <br>
+Overdue task tracking <br>
+Personalized “My Tasks” section <br>
 
-# 📁 Project Management
-Create projects
-Add team members via email
-Role-based access (Admin / Member)
-View project details
+# 📁 Project Management <br>
+Create projects <br>
+Add team members via email <br>
+Role-based access (Admin / Member) <br>
+View project details <br>
 
-# ✅ Task Management
-Create tasks (Admin only)
-Assign tasks to members
-Set priority (Low / Medium / High)
-Set due dates
-Update task status
-Delete tasks
+# ✅ Task Management <br>
+Create tasks (Admin only) <br>
+Assign tasks to members <br>
+Set priority (Low / Medium / High) <br>
+Set due dates <br>
+Update task status <br>
+Delete tasks <br>
 
-# 📌 Kanban Board
-Tasks organized into:
-To Do
-In Progress
-Done
+# 📌 Kanban Board <br>
+Tasks organized into: <br>
+To Do <br>
+In Progress <br>
+Done <br>
 
-# 🛠️ Tech Stack
-Frontend
-React.js
-React Router DOM
-Axios
-CSS (Custom Styled UI)
+# 🛠️ Tech Stack <br>
+# Frontend <br>
+React.js <br>
+React Router DOM <br>
+Axios <br>
+CSS (Custom Styled UI) <br>
 
-# Backend
-Node.js
-Express.js
+# Backend <br>
+Node.js <br>
+Express.js <br>
 
-# Database
-MongoDB (Mongoose)
-Authentication
-JSON Web Tokens (JWT)
+# Database <br>
+MongoDB (Mongoose) <br>
+Authentication <br>
+JSON Web Tokens (JWT) <br>
 
-# File Structure
+# File Structure <br>
 src/ <br>
 │   <br>
 ├── Component/  <br>
@@ -85,40 +85,40 @@ Assigned to members
 Managed via Kanban board
 6. Users track progress in Dashboard
 
-# ⚙️ Installation & Setup
-1️⃣ Clone the repository
-git clone https://github.com/Ram-Bhatt08/task_manager_frontend.git
-cd team-task-manager
+# ⚙️ Installation & Setup <br>
+1️⃣ Clone the repository <br>
+git clone https://github.com/Ram-Bhatt08/task_manager_frontend.git <br>
+cd team-task-manager <br>
 
-2️⃣ Install dependencies
-Frontend
-cd frontend
-npm install
+2️⃣ Install dependencies <br>
+Frontend <br>
+cd frontend <br>
+npm install <br>
 
-Backend
-cd backend
-npm install
+Backend <br>
+cd backend <br>
+npm install <br>
 
-3️⃣ Setup Environment Variables
+3️⃣ Setup Environment Variables <br>
 
-Create a .env file in backend:
-PORT=5000
-MONGO_URI=your_mongodb_connection
-JWT_SECRET=your_secret_key
+Create a .env file in backend: <br>
+PORT=5000  <br>
+MONGO_URI=your_mongodb_connection <br>
+JWT_SECRET=your_secret_key <br>
 
 4️⃣ Run the project
+  
+start backend <br>
+node server.js <br>
 
-start backend
-node server.js
+start frontend <br>
+npm run dev <br>
 
-start frontend
-npm run dev
+# 👨‍💻 Author <br>
 
-# 👨‍💻 Author
-
- <b>Ram Bhatt </b>
- <I>Software Developer </I>
-<I> Problem Solver </I>
+ <b>Ram Bhatt </b> <br>
+ <I>Software Developer </I> <br>
+<I> Problem Solver </I> <br>
 
 
 
